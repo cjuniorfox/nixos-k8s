@@ -1,7 +1,5 @@
 {config, pkgs, ... }:
 {
-  networking.useDHCP = true;
-
   networking.firewall.enable = false;
 
   boot.kernel.sysctl = {
