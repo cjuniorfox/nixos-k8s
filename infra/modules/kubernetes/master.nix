@@ -15,9 +15,8 @@
 
     addonManager.enable = true;
 
-    apiserver.extraOpts = [
-      "--admission-control-config-file=/etc/kubernetes/pod-security.yaml"
-    ];
+    apiserver.extraOpts =
+  "--admission-control-config-file=/etc/kubernetes/pod-security.yaml";
   };
 
   environment.etc."kubernetes/pod-security.yaml".text = ''
