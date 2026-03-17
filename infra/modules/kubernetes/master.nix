@@ -19,14 +19,19 @@
     kubelet = {
       cni = {
         packages = [ pkgs.cni-plugins ];
-        binDir = "/opt/cni/bin";
-        confDir = "/etc/cni/net.d";
+        # configDir must NOT be /etc/cni/net.d — the NixOS module does
+        # environment.etc."cni/net.d".source = configDir, which would create
+        # a circular symlink. Use a separate writable path so that
+        # /etc/cni/net.d → /var/lib/cni/net.d and Calico's init container
+        # can write its config there.
+        configDir = "/var/lib/cni/net.d";
       };
     };
   };
 
   systemd.tmpfiles.rules = [
-    "d /opt/cni/bin 0755 root root -"
+    "d /opt/cni/bin       0755 root root -"
+    "d /var/lib/cni/net.d 0755 root root -"
   ];
 
   networking.firewall.allowedTCPPorts = [
