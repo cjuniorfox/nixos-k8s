@@ -14,7 +14,27 @@
     # kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 
     addonManager.enable = true;
+
+    services.kubernetes.apiserver.extraOpts = {
+      "admission-control-config-file" = "/etc/kubernetes/pod-security.yaml";
+    };
   };
+
+  environment.etc."kubernetes/pod-security.yaml".text = ''
+  apiVersion: pod-security.admission.config.k8s.io/v1
+  kind: PodSecurityConfiguration
+  defaults:
+    enforce: "baseline"
+    enforce-version: "latest"
+    warn: "baseline"
+    warn-version: "latest"
+    audit: "baseline"
+    audit-version: "latest"
+  exemptions:
+    namespaces:
+      - kube-system
+  '';
+
   networking.firewall.allowedTCPPorts = [
     22
     6443
