@@ -14,20 +14,6 @@
     # kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 
     addonManager.enable = true;
-    addons = {
-      kube-system-pod-security = {
-        apiVersion = "v1";
-        kind = "Namespace";
-        metadata = {
-          name = "kube-system";
-          labels = {
-            "pod-security.kubernetes.io/enforce" = "privileged";
-            "pod-security.kubernetes.io/audit" = "privileged";
-            "pod-security.kubernetes.io/warn" = "privileged";
-          };
-        };
-      };
-    };
   };
   networking.firewall.allowedTCPPorts = [
     22
