@@ -10,30 +10,13 @@
 
     # Install Calico instead of Flannel for networking
     flannel.enable = false;
-    # Calico is the default CNI plugin in Kubernetes 1.24 and later, so we don't need to explicitly enable it.
+    # Calico installation can be done by applying the manifest directly from the URL:
     # kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 
     addonManager.enable = true;
 
-    apiserver.extraOpts =
-      "--enable-admission-plugins=PodSecurity \
-       --admission-control-config-file=/etc/kubernetes/pod-security.yaml";
+    apiserver.allowPrivileged = true;
   };
-
-  environment.etc."kubernetes/pod-security.yaml".text = ''
-  apiVersion: pod-security.admission.config.k8s.io/v1
-  kind: PodSecurityConfiguration
-  defaults:
-    enforce: "baseline"
-    enforce-version: "latest"
-    warn: "baseline"
-    warn-version: "latest"
-    audit: "baseline"
-    audit-version: "latest"
-  exemptions:
-    namespaces:
-      - kube-system
-  '';
 
   networking.firewall.allowedTCPPorts = [
     22
