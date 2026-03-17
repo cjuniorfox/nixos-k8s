@@ -8,6 +8,10 @@
     clusterCidr = "10.244.0.0/16,fd00:10:244::/56";
     apiserver.serviceClusterIpRange = "10.96.0.0/12,fd00:10:96::/108";
 
+    # Install Calico instead of Flannel for networking
+    flannel.enable = false;
+    calico.enable = true;
+
     addonManager.enable = true;
     services.kubernetes.addons = {
       kube-system-pod-security = {
@@ -23,8 +27,6 @@
         };
       };
     };
-  
-    
   };
   networking.firewall.allowedTCPPorts = [
     22
