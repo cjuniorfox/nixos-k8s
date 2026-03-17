@@ -10,7 +10,8 @@
 
     # Install Calico instead of Flannel for networking
     flannel.enable = false;
-    calico.enable = true;
+    # Calico is the default CNI plugin in Kubernetes 1.24 and later, so we don't need to explicitly enable it.
+    # kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 
     addonManager.enable = true;
     services.kubernetes.addons = {
