@@ -14,7 +14,7 @@
     # kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 
     addonManager.enable = true;
-    services.kubernetes.addons = {
+    addons = {
       kube-system-pod-security = {
         apiVersion = "v1";
         kind = "Namespace";
