@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
-  {
-    services.kubernetes = {
+
+{
+  services.kubernetes = {
     roles = [ "master" ];
     masterAddress = "k8s-control.vms.lan";
     easyCerts = true;
 
+    # Dual stack cluster networks
     clusterCidr = "10.244.0.0/16,fd00:10:244::/56";
     apiserver.serviceClusterIpRange = "10.96.0.0/12,fd00:10:96::/108";
 
-    # Install Calico instead of Flannel for networking
+    # Disable flannel so we can install Calico manually
     flannel.enable = false;
-    # Calico installation can be done by applying the manifest directly from the URL:
-    # kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 
     addonManager.enable = true;
 
@@ -26,5 +26,6 @@
     10250
     10257
     10259
+    179
   ];
 }
