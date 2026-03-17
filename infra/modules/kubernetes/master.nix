@@ -16,6 +16,11 @@
     addonManager.enable = true;
 
     apiserver.allowPrivileged = true;
+    kubelet = {
+      cni = {
+        packages = [ pkgs.cni-plugins ];
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [
