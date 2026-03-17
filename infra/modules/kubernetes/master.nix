@@ -9,6 +9,23 @@
     apiserver.serviceClusterIpRange = "10.96.0.0/12,fd00:10:96::/108";
 
     addonManager.enable = true;
+
+    services.kubernetes.addons = {
+    kube-system-pod-security = {
+      apiVersion = "v1";
+      kind = "Namespace";
+
+      metadata = {
+        name = "kube-system";
+  
+        labels = {
+          "pod-security.kubernetes.io/enforce" = "privileged";
+          "pod-security.kubernetes.io/audit" = "privileged";
+          "pod-security.kubernetes.io/warn" = "privileged";
+        };
+      };
+    };
+
   };
   networking.firewall.allowedTCPPorts = [
     22
