@@ -33,4 +33,26 @@
     10259
     179
   ];
+
+  system.activationScripts.calico-cni = ''
+    mkdir -p /opt/cni/bin
+
+    # extract calico binaries from image if not present
+    if [ ! -f /opt/cni/bin/calico ]; then
+      echo "Installing Calico CNI binaries..."
+
+      TMP=$(mktemp -d)
+
+      ${pkgs.skopeo}/bin/skopeo copy \
+        docker://docker.io/calico/cni:v3.25.0 \
+        dir:$TMP
+
+      tar -xzf $TMP/*/layer.tar -C $TMP
+
+      cp $TMP/opt/cni/bin/calico* /opt/cni/bin/
+
+      chmod +x /opt/cni/bin/calico*
+      rm -rf $TMP
+  fi
+'';
 }
