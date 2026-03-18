@@ -10,5 +10,5 @@ spec:
         encapsulation: VXLAN
         natOutgoing: Enabled
       - cidr: fd00:10:244::/56
-        encapsulation: None
+        encapsulation: VXLAN
         natOutgoing: Enabled
