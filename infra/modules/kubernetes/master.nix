@@ -15,6 +15,12 @@
 
     addonManager.enable = true;
 
+    # Disable Pod Security Policy to allow Calico's privileged containers
+    # PSP blocks calico-node DaemonSet from running with required privileges
+    apiserver.admissionControl = [
+      "NodeRestriction"
+    ];
+
     kubelet = {
       cni = {
         configDir = "/var/lib/cni/net.d";
