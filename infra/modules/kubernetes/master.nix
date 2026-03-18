@@ -15,10 +15,9 @@
 
     addonManager.enable = true;
 
-    # Disable Pod Security Policy to allow Calico's privileged containers
-    # PSP blocks calico-node DaemonSet from running with required privileges
-    apiserver.admissionControl = [
-      "NodeRestriction"
+    # Calico node requires privileged containers; disable PSP admission if present.
+    apiserver.disableAdmissionPlugins = [
+      "PodSecurityPolicy"
     ];
 
     kubelet = {
