@@ -2,7 +2,7 @@
 
 {
   services.kubernetes = {
-    roles = [ "master" ];
+    roles = [ "master" "node" ];
     masterAddress = "k8s-control.vms.lan";
     easyCerts = true;
 
@@ -15,22 +15,17 @@
 
     addonManager.enable = true;
 
-    apiserver.allowPrivileged = true;
     kubelet = {
       cni = {
-        packages = [ pkgs.cni-plugins ];
-        # configDir must NOT be /etc/cni/net.d — the NixOS module does
-        # environment.etc."cni/net.d".source = configDir, which would create
-        # a circular symlink. Use a separate writable path so that
-        # /etc/cni/net.d → /var/lib/cni/net.d and Calico's init container
-        # can write its config there.
         configDir = "/var/lib/cni/net.d";
+        packages = [ pkgs.cni-plugins ];
       };
     };
+
   };
 
   systemd.tmpfiles.rules = [
-    "d /opt/cni/bin       0755 root root -"
+    "d /opt/cni/bin 0755 root root -"
     "d /var/lib/cni/net.d 0755 root root -"
   ];
 
