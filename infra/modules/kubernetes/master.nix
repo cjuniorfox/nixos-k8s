@@ -15,10 +15,8 @@
 
     addonManager.enable = true;
 
-    # Calico node requires privileged containers; disable PSP admission if present.
-    apiserver.disableAdmissionPlugins = [
-      "PodSecurityPolicy"
-    ];
+    # Calico node requires privileged containers (manages iptables/network)
+    apiserver.allowPrivileged = true;
 
     kubelet = {
       cni = {
