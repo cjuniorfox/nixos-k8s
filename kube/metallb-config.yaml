@@ -1,0 +1,19 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: vms-lan-pool
+  namespace: metallb-system
+spec:
+  # Change this range to free IPs in your LAN segment.
+  # Example: fd38:82fc:4248:44:1::100-fd38:82fc:4248:44:1::150
+  addresses:
+    - fd38:82fc:4248:44:1::100-fd38:82fc:4248:44:1::150
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: vms-lan
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - vms-lan-pool
