@@ -19,5 +19,6 @@
       modules = [
         ./hosts/k8s-worker-1/configuration.nix
       ];
+    };
   };
 }
