@@ -3,15 +3,22 @@
   services.kubernetes = {
     roles = [ "node" ];
     masterAddress = "k8s-control.vms.lan";
+
+    flannel.enable = false;
+
+    kubelet = {
+      cni = {
+        configDir = "/var/lib/cni/net.d";
+        packages = [ ];
+      };
+    };
+
   };
-  
-  networking.firewall.allowedTCPPorts = [
-    22
-    10250
-  ];
 
-  networking.firewall.allowedTCPPortRanges = [
-    { from = 30000; to = 32767; }
-  ];
-
+  networking.firewall = {
+    allowedTCPPorts = [ 22 ];
+    allowedTCPPortRanges = [
+      { from = 30000; to = 32767; }
+    ];
+  }
 }

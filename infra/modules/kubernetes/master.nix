@@ -27,17 +27,7 @@
 
   };
 
-  systemd.tmpfiles.rules = [
-    "d /opt/cni/bin 0755 root root -"
-    "d /var/lib/cni/net.d 0755 root root -"
-    # Required by Calico CSI node driver
-    "r /var/lib/kubelet/plugins_registry"
-    "d /var/lib/kubelet/plugins_registry 0755 root root -"
-    "d /var/lib/kubelet/plugins/csi.tigera.io 0755 root root -"
-  ];
-
   networking.firewall.allowedTCPPorts = [
-    22
     6443
     2379
     2380
