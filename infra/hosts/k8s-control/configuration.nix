@@ -15,5 +15,4 @@
 
   networking.hostName = "k8s-control";
 
-  
 }
