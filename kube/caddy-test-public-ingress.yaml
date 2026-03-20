@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: caddy-public
+  namespace: caddy-test
+spec:
+  ingressClassName: caddy-public
+  rules:
+    - host: caddy.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: caddy
+                port:
+                  number: 80
