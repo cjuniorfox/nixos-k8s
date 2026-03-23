@@ -1,3 +1,4 @@
+# Private pool — VMS network (ens18), ULA IPv6 only
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -15,7 +16,10 @@ metadata:
 spec:
   ipAddressPools:
     - private-v6-pool
+  interfaces:
+    - ens18
 ---
+# Public pool — DMZ network (ens19), GUA IPv6 + IPv4 NAT
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -34,13 +38,5 @@ metadata:
 spec:
   ipAddressPools:
     - public-v6-pool
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: private-and-public-v6
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-    - private-v6-pool
-    - public-v6-pool
+  interfaces:
+    - ens19
