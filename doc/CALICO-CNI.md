@@ -19,7 +19,7 @@ tigera-operator-7c4b87d999-fxj6p   1/1     Running   0          3m22s
 If there's some error, restart kubernetes
 
 ```shell
-sudo systemctl restart kubelet.service kube-apiserver.service 
+sudo systemctl restart kubelet.service
 ```
 
 ### 2. Install the dual stack network calico installation (creating the IPPools)
