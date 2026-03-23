@@ -14,5 +14,5 @@
   boot.loader.grub.device = "/dev/vda";
 
   networking.hostName = "k8s-control";
-  networking.interfaces.ens19.ipAddress = "172.16.88.11/24";
+  networking.interfaces.ens19.ipAddresses = [ "172.16.88.11/24" ];
 }
