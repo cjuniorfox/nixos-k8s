@@ -6,13 +6,13 @@ metadata:
 spec:
   ingressClassName: caddy-public
   rules:
-    - host: caddy.example.com
+    - host: "*.juniorfox.net"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: caddy
+                name: caddy-test
                 port:
                   number: 80

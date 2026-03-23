@@ -6,13 +6,13 @@ metadata:
 spec:
   ingressClassName: caddy-private
   rules:
-    - host: caddy.vms.lan
+    - host: "*.vms.lan"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: caddy
+                name: caddy-test
                 port:
                   number: 80
