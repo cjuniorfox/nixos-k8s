@@ -1,5 +1,7 @@
 replicaCount: 2
 
+nameOverride: caddy-private
+
 loadBalancer:
   enabled: false
 

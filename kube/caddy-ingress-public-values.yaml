@@ -1,5 +1,7 @@
 replicaCount: 2
 
+nameOverride: caddy-public
+
 loadBalancer:
   enabled: false
 
@@ -9,11 +11,13 @@ service:
   internalTrafficPolicy: Cluster
   annotations:
     metallb.io/address-pool: public-v6-pool
+    metallb.io/allow-shared-ip: caddy-public
   ipDualStack:
     enabled: true
     ipFamilies:
       - IPv6
-    ipFamilyPolicy: SingleStack
+      - IPv4
+    ipFamilyPolicy: PreferDualStack
 
 ingressController:
   className: caddy-public
