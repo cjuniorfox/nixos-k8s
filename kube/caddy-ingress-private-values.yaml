@@ -27,3 +27,4 @@ ingressController:
     # Private/internal hostnames usually use Caddy's internal CA. Clients must
     # trust that CA to avoid TLS warnings.
     email: ""
+    acmeCA: https://caddy-ca.internal/v1/acme-ca/directory
