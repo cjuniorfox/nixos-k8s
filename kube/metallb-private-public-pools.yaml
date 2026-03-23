@@ -22,12 +22,9 @@ metadata:
   name: public-v6-pool
   namespace: metallb-system
 spec:
-  # Only apply this pool if 2001:470:e309:44::/64 is actually on-link for the
-  # same L2 segment as your Kubernetes nodes. If that prefix is only routed to
-  # OPNsense and not present on the LAN, keep using private-v6-pool for now and
-  # move the public pool to BGP later.
   addresses:
-    - 2001:470:e309:44:1::100-2001:470:e309:44:1::150
+    - 2001:470:e309:88:1::100-2001:470:e309:88:1::150
+    - 172.16.88.100-172.16.88.150
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
