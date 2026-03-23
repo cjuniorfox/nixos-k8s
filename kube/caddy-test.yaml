@@ -70,7 +70,7 @@ metadata:
   name: caddy
   namespace: caddy-test
 spec:
-  ingressClassName: nginx
+  ingressClassName: caddy-private
   tls:
     - hosts:
         - caddy.vms.lan
