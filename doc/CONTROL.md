@@ -1,6 +1,6 @@
 # NixOS Kubernetes configuration
 
-## Configure kubeadm
+## Configure kubectl
 
 ```shell
 sudo KUBECONFIG=/etc/kubernetes/cluster-admin.kubeconfig \
