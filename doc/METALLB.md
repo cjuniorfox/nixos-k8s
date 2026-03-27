@@ -4,8 +4,11 @@ MetalLB provides the IP addresses for LoadBalancer services (used by the Caddy i
 
 ## Install MetalLB
 
+Official documentation [here](https://metallb.io/installation/).
+
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
+METALLB_VERSION=v0.15.3
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VERSION}/config/manifests/metallb-native.yaml
 ```
 
 The controller normally auto-creates the `memberlist` secret on first start. If pods get
