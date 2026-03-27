@@ -8,6 +8,7 @@
     vim
     git
     kubectl
+    kubernetes-heml
     wget
   ];
 
