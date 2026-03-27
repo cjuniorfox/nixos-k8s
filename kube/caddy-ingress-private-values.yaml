@@ -24,7 +24,20 @@ ingressController:
   config:
     metrics: true
     debug: false
-    # Private/internal hostnames usually use Caddy's internal CA. Clients must
-    # trust that CA to avoid TLS warnings.
-    email: ""
-    acmeCA: https://caddy-ca.internal/v1/acme-ca/directory
+    email: "kube@cloudstrife.vms.lan"
+    acmeCA: https://cloudstrife.vms.lan/acme/acme/directory
+    acmeCARoot: /etc/caddy/acme-root.pem
+
+extraEnv:
+  - name: CADDY_INGRESS_CONTROLLER_ACME_CA_ROOT
+    value: /etc/caddy/acme-root.pem
+
+extraVolumes:
+  - name: acme-root
+    secret:
+      secretName: internal-acme-root
+
+extraVolumeMounts:
+  - name: acme-root
+    mountPath: /etc/caddy
+    readOnly: true
