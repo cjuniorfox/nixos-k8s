@@ -4,6 +4,17 @@
 
 ### Private
 
+Because kubernetes does not trust on our private certificate, I have to install my certificate authority
+
+```shell
+kubectl create namespace caddy-private
+```
+
+```shell
+kubectl -n caddy-private create secret generic internal-acme-root \
+  --from-file=acme-root.pem=cloudstrife-ca.crt
+```
+
 The private ingress is single stack ipv6-only, but need to be configured as **dual stack** because **single stack** is interpreted as **IPv4-only**.
 
 ```shell
