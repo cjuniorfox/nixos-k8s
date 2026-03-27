@@ -2,6 +2,8 @@
 
 ## Installation
 
+Check out [Tigera Operator Website](https://docs.tigera.io/calico/latest/getting-started/kubernetes/self-managed-onprem/onpremises#install-calico).
+
 ### 1. Install Tigera operator
 
 ```shell
