@@ -31,7 +31,6 @@
 
   # Allow kubernetes write to these directories for CNI and CSI plugins
   systemd.tmpfiles.rules = [
-    "d /opt/cni/bin 0755 root root -"
     "d /var/lib/cni/net.d 0755 root root -"
     # Required by Calico CSI node driver
     "r /var/lib/kubelet/plugins_registry"
