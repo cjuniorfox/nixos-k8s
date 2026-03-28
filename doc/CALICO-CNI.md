@@ -7,7 +7,8 @@ Check out [Tigera Operator Website](https://docs.tigera.io/calico/latest/getting
 ### 1. Install Tigera operator
 
 ```shell
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.2/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.4/manifests/operator-crds.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.4/manifests/tigera-operator.yaml
 ```
 
 Check for its installation
@@ -27,7 +28,7 @@ sudo systemctl restart kubelet.service
 ### 2. Install the dual stack network calico installation (creating the IPPools)
 
 ```shell
-kubectl apply -f kube/calico-installation-dualstack.yaml
+kubectl apply -f https://raw.githubusercontent.com/cjuniorfox/nixos-k8s/refs/heads/main/kube/calico-installation-dualstack.yaml
 ```
 
 Wait for the calico installation to complete

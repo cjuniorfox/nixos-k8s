@@ -36,7 +36,7 @@ Two pools are defined:
 - **public-v6-pool** — GUA range `2001:470:e309:88:1::100-150` + IPv4 `172.16.88.100-150`, announced on `ens19` (DMZ network)
 
 ```shell
-kubectl apply -f kube/metallb-private-public-pools.yaml
+kubectl apply -f https://raw.githubusercontent.com/cjuniorfox/nixos-k8s/refs/heads/main/kube/metallb-private-public-pools.yaml
 ```
 
 Verify pools and advertisements:
