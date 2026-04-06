@@ -9,7 +9,7 @@
     kubelet = {
       cni = {
         configDir = "/var/lib/cni/net.d";
-        packages = [ ];
+        packages = lib.mkForce [ ];
       };
     };
   };

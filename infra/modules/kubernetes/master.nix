@@ -21,11 +21,13 @@
     kubelet = {
       cni = {
         configDir = "/var/lib/cni/net.d";
-        packages = [ ];
+        packages = lib.mkForce [ ];
       };
     };
 
   };
+
+  system.activationScripts.cniPlugins.text = lib.mkForce "";
 
   networking.firewall.allowedTCPPorts = [
     6443
