@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   services.kubernetes = {
@@ -21,13 +21,11 @@
     kubelet = {
       cni = {
         configDir = "/var/lib/cni/net.d";
-        packages = lib.mkForce [ ];
+        packages = [ ];
       };
     };
 
   };
-
-  system.activationScripts.cniPlugins.text = lib.mkForce "";
 
   networking.firewall.allowedTCPPorts = [
     6443
